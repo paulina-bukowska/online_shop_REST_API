@@ -8,5 +8,5 @@ import lombok.*;
 public class PaymentDto {
     private Integer id;
     private Boolean isPaid;
-    private Cart cart;
+    private CartDto cartDto;
 }

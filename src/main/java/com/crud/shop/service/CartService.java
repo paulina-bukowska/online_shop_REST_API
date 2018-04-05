@@ -13,8 +13,8 @@ public class CartService {
     @Autowired
     private CartRepository cartRepository;
 
-    public void saveCart(Cart cart) {
-        cartRepository.save(cart);
+    public Integer saveCart(Cart cart) {
+        return cartRepository.save(cart);
     }
 
     public void deleteCart(Integer cartId) {
@@ -25,7 +25,7 @@ public class CartService {
         return cartRepository.findOne(cartId);
     }
 
-    public List<Product> getproductsFromCart(Integer cartId) {
+    public List<Product> getProductsByCartId(Integer cartId) {
         return cartRepository.findOne(cartId).getProducts();
     }
 }

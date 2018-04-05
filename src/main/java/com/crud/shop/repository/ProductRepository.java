@@ -7,8 +7,8 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Integer> {
+    Product findById(Integer productId);
+
     @Override
     List<Product> findAll();
-
-    Product findByName(String name);
 }

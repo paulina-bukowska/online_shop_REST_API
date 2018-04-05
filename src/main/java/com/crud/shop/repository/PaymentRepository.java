@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PaymentRepository extends CrudRepository<Payment, Integer> {
+    @Override
+    Integer save(Payment payment);
 }
