@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Table(name = "USERS")
 public class User {
     private Integer id;

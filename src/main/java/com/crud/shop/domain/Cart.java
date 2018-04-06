@@ -8,7 +8,6 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Table(name = "SHOPPING_CART")
 public class Cart {
     private Integer id;

@@ -8,7 +8,6 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Table(name = "PRODUCTS")
 public class Product {
     private Integer id;

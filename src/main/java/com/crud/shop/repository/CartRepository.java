@@ -9,11 +9,12 @@ import java.util.List;
 
 @Repository
 public interface CartRepository extends CrudRepository<Cart, Integer> {
-    void deleteById(Integer cartId);
+    @Override
+    Integer save(Cart cart);
+
+    @Override
+    void delete(Integer cartId);
 
     @Override
     Cart findOne(Integer cartId);
-
-    @Override
-    Integer save(Cart cart);
 }

@@ -16,18 +16,23 @@ public class ProductController {
     @Autowired
     private CartService cartService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "")
+    @RequestMapping(method = RequestMethod.GET)
     public List<Product> getAvailableProducts() {
-        return productService.getAllProducts();
+        return productService.getAvailableProducts();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/carts")
-    public List<Product> getProductsFromCart(@RequestParam Integer cartId) {
+    public List<Product> getProductsByCartId(@RequestParam Integer cartId) {
         return cartService.getProductsByCartId(cartId);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/carts")
     public void addProductToCart(@RequestParam Integer productId, @RequestParam Integer cartId) {
-        cartService.getCart(cartId).setProducts(productService.getProduct(productId));
+        cartService.addProductToCart(productId, cartId);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/carts")
+    public void deleteProductFromCart(@RequestParam Integer productId, @RequestParam Integer cartId) {
+        cartService.deleteProductFromCart(productId, cartId);
     }
 }
