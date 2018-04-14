@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 @Table(name = "PAYMENTS")
 public class Payment {
     private Integer id;
@@ -30,15 +31,7 @@ public class Payment {
         return cart;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public void setPaid(Boolean paid) {
         isPaid = paid;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 @Table(name = "SHOPPING_CART")
 public class Cart {
     private Integer id;
@@ -23,10 +24,6 @@ public class Cart {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "carts")
     public List<Product> getProducts() {
         return products;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public void setProducts(Product product) {

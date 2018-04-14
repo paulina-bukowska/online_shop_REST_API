@@ -8,6 +8,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 @Table(name = "PRODUCTS")
 public class Product {
     private Integer id;
@@ -34,17 +35,5 @@ public class Product {
     )
     public List<Cart> getCarts() {
         return carts;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCarts(List<Cart> carts) {
-        this.carts = carts;
     }
 }

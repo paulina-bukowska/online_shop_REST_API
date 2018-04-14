@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public interface PaymentRepository extends CrudRepository<Payment, Integer> {
     @Override
-    Integer save(Payment payment);
+    Payment save(Payment payment);
 
     @Override
     Payment findOne(Integer paymentId);

@@ -1,6 +1,5 @@
 package com.crud.shop.controller;
 
-import com.crud.shop.domain.Payment;
 import com.crud.shop.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +11,8 @@ public class PaymentController {
     @Autowired
     PaymentService paymentService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/carts", consumes = APPLICATION_JSON_VALUE)
-    public Integer createPayment(@RequestBody Payment payment, @RequestParam Integer cartId) {
-        return paymentService.createPayment(payment, cartId);
+    @RequestMapping(method = RequestMethod.PUT, value = "/users", consumes = APPLICATION_JSON_VALUE)
+    public Boolean confirmPayment(@RequestParam Integer paymentId, @RequestParam Integer buyerId, @RequestParam Integer sellerId) {
+        return paymentService.confirmPayment(paymentId, buyerId, sellerId);
     }
 }

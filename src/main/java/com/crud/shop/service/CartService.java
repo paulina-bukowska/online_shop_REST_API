@@ -21,8 +21,8 @@ public class CartService {
     @Autowired
     private PaymentService paymentService;
 
-    public Integer createCart(Cart cart, Integer userId) {
-        userService.getUser(userId).setCart(cart);
+    public Cart createCart(Cart cart, Integer buyerId) {
+        userService.getUser(buyerId).setCart(cart);
         return cartRepository.save(cart);
     }
 

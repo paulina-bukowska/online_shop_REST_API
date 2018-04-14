@@ -6,12 +6,14 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 @Table(name = "USERS")
 public class User {
     private Integer id;
     private String firstname;
     private String lastname;
     private String location;
+    private String email;
     private Cart cart;
 
     @Id
@@ -36,29 +38,19 @@ public class User {
         return location;
     }
 
+    @Column(name = "EMAIL")
+    public String getEmail() {
+        return email;
+    }
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "CART_ID")
     public Cart getCart() {
         return cart;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    @Override
+    public String toString() {
+        return firstname + lastname;
     }
 }

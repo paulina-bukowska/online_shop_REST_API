@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface CartRepository extends CrudRepository<Cart, Integer> {
     @Override
-    Integer save(Cart cart);
+    Cart save(Cart cart);
 
     @Override
     void delete(Integer cartId);
