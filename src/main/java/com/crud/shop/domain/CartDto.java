@@ -10,5 +10,6 @@ import java.util.List;
 @Getter
 public class CartDto {
     private Integer id;
+    private User user;
     List<Product> products = new ArrayList<>();
 }

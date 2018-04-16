@@ -2,6 +2,8 @@ package com.crud.shop.domain;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -15,6 +17,7 @@ public class User {
     private String location;
     private String email;
     private Cart cart;
+    private List<Order> orders = new ArrayList<>();
 
     @Id
     @GeneratedValue
@@ -52,5 +55,20 @@ public class User {
     @Override
     public String toString() {
         return firstname + lastname;
+    }
+
+    @OneToMany(
+            targetEntity = Order.class,
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Order order) {
+        orders.add(order);
     }
 }

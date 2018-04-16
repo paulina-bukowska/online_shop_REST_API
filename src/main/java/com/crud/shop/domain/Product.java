@@ -36,4 +36,8 @@ public class Product {
     public List<Cart> getCarts() {
         return carts;
     }
+
+    public void setCarts(Cart cart) {
+        carts.add(cart);
+    }
 }

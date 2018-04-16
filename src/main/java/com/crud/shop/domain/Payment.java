@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class Payment {
     private Integer id;
     private Boolean isPaid;
+    private Boolean confirmation;
     private Cart cart;
 
     @Id
@@ -23,6 +24,11 @@ public class Payment {
     @Column(name = "IS_PAID")
     public Boolean getPaid() {
         return isPaid;
+    }
+
+    @Column(name = "CONFIRMATION")
+    public Boolean getConfirmation() {
+        return confirmation;
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

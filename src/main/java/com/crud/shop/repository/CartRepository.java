@@ -1,6 +1,7 @@
 package com.crud.shop.repository;
 
 import com.crud.shop.domain.Cart;
+import com.crud.shop.domain.CartDto;
 import com.crud.shop.domain.Product;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

@@ -14,12 +14,9 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @Autowired
-    private PaymentService paymentService;
-
     @RequestMapping(method = RequestMethod.POST, value = "/users", consumes = APPLICATION_JSON_VALUE)
-    public Cart createCart(@RequestBody Cart cart, @RequestParam Integer buyerId) {
-        return cartService.createCart(cart, buyerId);
+    public Cart createCart(@RequestParam Integer buyerId) {
+        return cartService.createCart(buyerId);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
@@ -28,7 +25,7 @@ public class CartController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = APPLICATION_JSON_VALUE)
-    public Boolean payForCart(@RequestParam Integer cartId, @RequestBody Payment payment) {
-        return cartService.payForCart(cartId, paymentService.createPayment(payment, cartId).getId());
+    public Boolean payForCart(@RequestParam Integer cartId) {
+        return cartService.payForCart(cartId);
     }
 }

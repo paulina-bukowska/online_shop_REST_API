@@ -1,6 +1,8 @@
 package com.crud.shop.service;
 
 import com.crud.shop.domain.Cart;
+import com.crud.shop.domain.CartDto;
+import com.crud.shop.domain.Payment;
 import com.crud.shop.domain.Product;
 import com.crud.shop.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,13 @@ public class CartService {
     @Autowired
     private PaymentService paymentService;
 
-    public Cart createCart(Cart cart, Integer buyerId) {
+    @Autowired
+    private OrderService orderService;
+
+    public Cart createCart(Integer buyerId) {
+        Cart cart = new Cart();
         userService.getUser(buyerId).setCart(cart);
+        cart.setUser(userService.getUser(buyerId));
         return cartRepository.save(cart);
     }
 
@@ -40,19 +47,18 @@ public class CartService {
 
     public void addProductToCart(Integer productId, Integer cartId) {
         getCart(cartId).setProducts(productService.getProduct(productId));
+        productService.getProduct(productId).setCarts(getCart(cartId));
     }
 
     public void deleteProductFromCart(Integer productId, Integer cartId) {
         getCart(cartId).getProducts().remove(productId);
     }
 
-    public Boolean payForCart(Integer cartId, Integer paymentId) {
-        Boolean isPaid = false;
-        if(paymentService.getPayment(paymentId).getCart().getId() == cartId) {
-            paymentService.getPayment(paymentId).setPaid(true);
-            deleteCart(cartId);
-            isPaid = true;
-        }
-        return isPaid;
+    public Boolean payForCart(Integer cartId) {
+        Payment payment = paymentService.createPayment(cartId);
+        payment.setPaid(true);
+        orderService.createOrder(getCart(cartId).getUser().getId());
+        deleteCart(cartId);
+        return true;
     }
 }

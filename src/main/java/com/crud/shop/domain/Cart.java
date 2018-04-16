@@ -12,7 +12,8 @@ import java.util.List;
 @Table(name = "SHOPPING_CART")
 public class Cart {
     private Integer id;
-    List<Product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
+    private User user;
 
     @Id
     @GeneratedValue
@@ -24,6 +25,11 @@ public class Cart {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "carts")
     public List<Product> getProducts() {
         return products;
+    }
+
+    @Transient
+    public User getUser() {
+        return user;
     }
 
     public void setProducts(Product product) {
