@@ -32,7 +32,7 @@ public class PaymentService {
 
     public Boolean confirmPayment(Integer paymentId, Integer buyerId, Integer sellerId) {
         Boolean confirmation = false;
-        if (cartService.payForCart(getPayment(paymentId).getCart().getId())) {
+        if (cartService.payForCart(getPayment(paymentId).getCart().getId(), buyerId)) {
             String buyerEmail = userService.getUser(buyerId).getEmail();
             String buyerName = userService.getUser(sellerId).toString();
             String sellerEmail = userService.getUser(sellerId).getEmail();

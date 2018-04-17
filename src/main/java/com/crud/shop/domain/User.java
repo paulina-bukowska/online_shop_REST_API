@@ -9,6 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
+@EqualsAndHashCode
 @Table(name = "USERS")
 public class User {
     private Integer id;
@@ -54,7 +55,7 @@ public class User {
 
     @Override
     public String toString() {
-        return firstname + lastname;
+        return firstname + " " + lastname;
     }
 
     @OneToMany(

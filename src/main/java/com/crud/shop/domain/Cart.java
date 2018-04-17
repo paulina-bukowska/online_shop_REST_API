@@ -13,7 +13,7 @@ import java.util.List;
 public class Cart {
     private Integer id;
     private List<Product> products = new ArrayList<>();
-    private User user;
+//    private User user;
 
     @Id
     @GeneratedValue
@@ -27,10 +27,10 @@ public class Cart {
         return products;
     }
 
-    @Transient
-    public User getUser() {
-        return user;
-    }
+//    @Transient
+//    public User getUser() {
+//        return user;
+//    }
 
     public void setProducts(Product product) {
         products.add(product);

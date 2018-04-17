@@ -24,8 +24,8 @@ public class CartController {
         cartService.deleteCart(cartId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, consumes = APPLICATION_JSON_VALUE)
-    public Boolean payForCart(@RequestParam Integer cartId) {
-        return cartService.payForCart(cartId);
+    @RequestMapping(method = RequestMethod.PUT, value = "/users", consumes = APPLICATION_JSON_VALUE)
+    public Boolean payForCart(@RequestParam Integer cartId, @RequestParam Integer buyerId) {
+        return cartService.payForCart(cartId, buyerId);
     }
 }
