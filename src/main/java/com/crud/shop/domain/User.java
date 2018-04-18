@@ -17,7 +17,7 @@ public class User {
     private String lastname;
     private String location;
     private String email;
-    private Cart cart;
+    private List<Cart> carts = new ArrayList<>();
     private List<Order> orders = new ArrayList<>();
 
     @Id
@@ -47,12 +47,6 @@ public class User {
         return email;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "CART_ID")
-    public Cart getCart() {
-        return cart;
-    }
-
     @Override
     public String toString() {
         return firstname + " " + lastname;
@@ -64,12 +58,25 @@ public class User {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
-
     public List<Order> getOrders() {
         return orders;
     }
 
+    @OneToMany(
+            targetEntity = Cart.class,
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    public List<Cart> getCarts() {
+        return carts;
+    }
+
     public void setOrders(Order order) {
         orders.add(order);
+    }
+
+    public void setCarts(Cart cart) {
+        carts.add(cart);
     }
 }

@@ -28,8 +28,8 @@ public class CartService {
 
     public Cart createCart(Integer buyerId) {
         Cart cart = new Cart();
-        userService.getUser(buyerId).setCart(cart);
-//        cart.setUser(userService.getUser(buyerId));
+        userService.getUser(buyerId).setCarts(cart);
+        cart.setUser(userService.getUser(buyerId));
         return cartRepository.save(cart);
     }
 
@@ -54,19 +54,11 @@ public class CartService {
         getCart(cartId).getProducts().remove(productId);
     }
 
-    public Boolean payForCart(Integer cartId, Integer buyerId) {
+    public Boolean payForCart(Integer cartId) {
         Payment payment = paymentService.createPayment(cartId);
         payment.setPaid(true);
-        orderService.createOrder(buyerId);
+        orderService.createOrder(getCart(cartId).getUser().getId());
         deleteCart(cartId);
         return true;
     }
-
-//    public Boolean payForCart(Integer cartId) {
-//        Payment payment = paymentService.createPayment(cartId);
-//        payment.setPaid(true);
-//        orderService.createOrder(getCart(cartId).getUser().getId());
-//        deleteCart(cartId);
-//        return true;
-//    }
 }

@@ -28,8 +28,8 @@ public class OrderServiceTestSuite {
     @Test
     public void shouldCreateOrder() {
         //Given
-        Cart cart = new Cart(15, new ArrayList<>());
-        User user = new User(3, "Veronica", "Smith", "Ivry", "ver@test.com", cart, new ArrayList<>());
+        User user = new User(3, "Veronica", "Smith", "Ivry", "ver@test.com", new ArrayList<>(), new ArrayList<>());
+        Cart cart = new Cart(15, user, new ArrayList<>());
         Order testOrder = new Order(1, user, false);
 
         when(userService.getUser(user.getId())).thenReturn(user);

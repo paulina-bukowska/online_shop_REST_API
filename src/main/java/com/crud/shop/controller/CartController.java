@@ -26,6 +26,6 @@ public class CartController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/users", consumes = APPLICATION_JSON_VALUE)
     public Boolean payForCart(@RequestParam Integer cartId, @RequestParam Integer buyerId) {
-        return cartService.payForCart(cartId, buyerId);
+        return cartService.payForCart(cartId);
     }
 }
