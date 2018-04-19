@@ -29,11 +29,10 @@ public class OrderServiceTestSuite {
     public void shouldCreateOrder() {
         //Given
         User user = new User(3, "Veronica", "Smith", "Ivry", "ver@test.com", new ArrayList<>(), new ArrayList<>());
-        Cart cart = new Cart(15, user, new ArrayList<>());
-        Order testOrder = new Order(1, user, false);
+        Order order = new Order(1, user, false);
 
         when(userService.getUser(user.getId())).thenReturn(user);
-        when(orderRepository.save(testOrder)).thenReturn(testOrder);
+        when(orderRepository.save(new Order())).thenReturn(order);
 
         //When
         Order result = orderService.createOrder(user.getId());

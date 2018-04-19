@@ -35,11 +35,12 @@ public class CartControllerTestSuite {
     @Test
     public void shouldFetchCart() throws Exception {
         //Given
-        Integer buyerId = 3;
-        User user = new User(3, "Veronica", "Smith", "Ivry", "ver@test.com", new ArrayList<>(), new ArrayList<>());
+        List<Cart> carts = new ArrayList<>();
+        carts.add(new Cart());
+        User user = new User(3, "Veronica", "Smith", "Ivry", "ver@test.com", carts, new ArrayList<>());
         Cart cart = new Cart(15, user, new ArrayList<>());
 
-        when(cartService.createCart(buyerId)).thenReturn(cart);
+        when(cartService.createCart(user.getId())).thenReturn(cart);
 
         //When & Then
         mockMvc.perform(post("/v1/carts/users").contentType(MediaType.APPLICATION_JSON).param("buyerId", "3"))
@@ -51,7 +52,7 @@ public class CartControllerTestSuite {
                 .andExpect(jsonPath("$.user.lastname", is("Smith")))
                 .andExpect(jsonPath("$.user.location", is("Ivry")))
                 .andExpect(jsonPath("$.user.email", is("ver@test.com")))
-//                .andExpect(jsonPath("$.user.carts", hasSize(1)))
+                .andExpect(jsonPath("$.user.carts", hasSize(1)))
                 .andExpect(jsonPath("$.user.orders", hasSize(0)));
 
     }
