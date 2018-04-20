@@ -12,6 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -29,16 +30,17 @@ public class OrderServiceTestSuite {
     public void shouldCreateOrder() {
         //Given
         User user = new User(3, "Veronica", "Smith", "Ivry", "ver@test.com", new ArrayList<>(), new ArrayList<>());
-        Order order = new Order(1, user, false);
+        Order inOrder = new Order(null, user, false);
+        Order outOrder = new Order(1, user, false);
 
         when(userService.getUser(user.getId())).thenReturn(user);
-        when(orderRepository.save(new Order())).thenReturn(order);
+        when(orderRepository.save(inOrder)).thenReturn(outOrder);
 
         //When
         Order result = orderService.createOrder(user.getId());
 
         //Then
-        assertEquals("1", result.getId());
+        assertEquals(new Integer(1), result.getId());
         assertFalse(result.getConfirmation());
         assertEquals("Veronica", result.getUser().getFirstname());
     }

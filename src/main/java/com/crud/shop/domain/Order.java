@@ -1,6 +1,7 @@
 package com.crud.shop.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
@@ -9,11 +10,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
+@EqualsAndHashCode
 @Table(name = "ORDERS")
 public class Order {
     private Integer id;
     private User user;
-    private Boolean confirmation;
+    private Boolean confirmation = false;
 
     @Id
     @GeneratedValue
